@@ -1,3 +1,5 @@
+local lang = type(Config.lang) == 'table' and Config.lang or {}
+
 ---@class Match
 ---@field groups table Table storing the groups in the match.
 ---@field round number Current round of the match.
@@ -127,8 +129,8 @@ function Match:startMatch()
     end
 
     for _, src in pairs(notifyPlayersRemoveGroup) do
-        Utils.notify(src,
-            'Seu grupo foi ~r~desclassificado~s~ da partida pois não atingiu o ~y~número mínimo de membros~s~')
+        Utils.notify(src, 
+           lang.disqualifiedGroup or 'Your group was ~r~disqualified~s~ from the match because it did not reach the ~y~minimum number of members~s~')
     end
 
     local getBucketMatch

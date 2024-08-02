@@ -1,3 +1,5 @@
+local lang = type(Config.lang) == 'table' and Config.lang or {}
+
 local lobbies = type(Config.lobbies) == 'table' and Config.lobbies or {}
 GROUPS_LOBBIES = {}
 GROUPS_GLOBALSTATE = {}
@@ -38,13 +40,13 @@ RegisterServerEvent("PVPStatistics:enterGroup", function(lobbyIndex, groupIndex)
 
     local isValidGroup, groupStartingConfig = validateGroup(lobbyIndex, groupIndex)
     if not isValidGroup then
-        Utils.notify(src, '~r~Este grupo não é um grupo válido~s~')
+        Utils.notify(src, lang.notValidGroup or '~r~This group is not a valid~s~') 
         return
     end
 
     local inMatch = Utils.checkPlayerInMatch(src)
     if inMatch then
-        Utils.notify(src, '~y~Você já está em uma partida~s~')
+        Utils.notify(src,  lang.alreadyInAmatch or '~y~You are already in a match~s~')
         return
     end
 
@@ -61,14 +63,14 @@ RegisterServerEvent("PVPStatistics:enterGroup", function(lobbyIndex, groupIndex)
     if playerInGroup then
         if playerInGroup == groupIndex then
             if GROUPS_LOBBIES[lobbyIndex] and GROUPS_LOBBIES[lobbyIndex][groupIndex] then
-                GROUPS_LOBBIES[lobbyIndex][groupIndex]:removeMember(src)
-                Utils.notify(src, '~y~Você saiu do grupo~s~')
+                GROUPS_LOBBIES[lobbyIndex][groupIndex]:removeMember(src) 
+                Utils.notify(src, lang.leaveGroup or '~y~You left the group~s~') 
                 updateGroupsGlobalState(GROUPS_LOBBIES[lobbyIndex][groupIndex])
                 return
             end
-        end
-
-        Utils.notify(src, '~r~Você já está em um grupo~s~')
+        end 
+ 
+        Utils.notify(src, lang.isAlreadyInAGroup or '~r~You are already in a group~s~')
         return
     end
     if not GROUPS_LOBBIES[lobbyIndex] then
@@ -84,8 +86,8 @@ RegisterServerEvent("PVPStatistics:enterGroup", function(lobbyIndex, groupIndex)
     local countMembers = groupInstance:countMembers()
     local maxPlayers = type(groupStartingConfig.numberOfTeamMembers) == 'number' and
                            groupStartingConfig.numberOfTeamMembers or 5
-    if countMembers >= maxPlayers then
-        Utils.notify(src, '~y~Este grupo já está cheio~s~')
+    if countMembers >= maxPlayers then 
+        Utils.notify(src, lang.crowdedGroup or '~y~This group is full~s~')
         return
     end
 
@@ -100,7 +102,7 @@ RegisterServerEvent("PVPStatistics:enterGroup", function(lobbyIndex, groupIndex)
     groupInstance:addMember(member1)
 
     updateGroupsGlobalState(groupInstance)
-    Utils.notify(src, '~g~Você entrou no grupo~s~\nAguarde até o início da partida')
+    Utils.notify(src, lang.joinedTheGroup or 'You have joined the group~s~\nWait until the match starts')
  
 end)
 

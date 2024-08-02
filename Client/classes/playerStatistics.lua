@@ -1,3 +1,5 @@
+local lang = type(Config.lang) == 'table' and Config.lang or {}
+
 local IMAGE = ""
 local image_original_size_x = 0.25
 local image_original_size_y = 0.7407
@@ -313,31 +315,31 @@ function PlayerStatistics:drawPed(x, y, width, height, borderColor, borderWidth,
     local box1_relativeX = 0.3
     local box1_relativeY = y
 
-    Box('Última Partida', box1_relativeX, box1_relativeY)
+    Box(lang.LastMatch or 'Last Match', box1_relativeX, box1_relativeY) 
 
     local boxX = box1_relativeX + 0.065
-    info(self.playerMetrics.lastMatch.KDR or '0', 'KDR', boxX - 0.10, box1_relativeY - 0.16)
-    info(self.playerMetrics.lastMatch.totalHS or '0', 'HS', boxX - 0.032, box1_relativeY - 0.16)
+    info(self.playerMetrics.lastMatch.KDR or '0', lang.KDR or 'KDR', boxX - 0.10, box1_relativeY - 0.16)
+    info(self.playerMetrics.lastMatch.totalHS or '0', lang.HS or 'HS', boxX - 0.032, box1_relativeY - 0.16)
 
-    info(self.playerMetrics.lastMatch.totalKills or '0', 'KILLS', boxX - 0.10, box1_relativeY - 0.05)
-    info(self.playerMetrics.lastMatch.totalDeaths or '0', 'DEATH', boxX - 0.032, box1_relativeY - 0.05)
+    info(self.playerMetrics.lastMatch.totalKills or '0', lang.KILLS or  'KILLS', boxX - 0.10, box1_relativeY - 0.05)
+    info(self.playerMetrics.lastMatch.totalDeaths or '0', lang.DEATH or 'DEATH', boxX - 0.032, box1_relativeY - 0.05)
 
-    info(self.playerMetrics.lastMatch.totalDamageReceived or '0', 'DAMAGE\nRECEIVED', boxX - 0.10, box1_relativeY + 0.06)
-    info(self.playerMetrics.lastMatch.totalDamageDone or '0', 'DAMAGE\nDONE', boxX - 0.032, box1_relativeY + 0.06)
+    info(self.playerMetrics.lastMatch.totalDamageReceived or '0', lang.DAMAGE_RECEIVED or  'DAMAGE\nRECEIVED', boxX - 0.10, box1_relativeY + 0.06)
+    info(self.playerMetrics.lastMatch.totalDamageDone or '0',  lang.DAMAGE_DONE or 'DAMAGE\nDONE', boxX - 0.032, box1_relativeY + 0.06)
 
     local box2_relativeX = 0.7
-    local box2_relativeY = y
-    Box('Relatório Geral', box2_relativeX, box2_relativeY)
+    local box2_relativeY = y 
+    Box(lang.GeneralReport or 'General Report', box2_relativeX, box2_relativeY)
 
     local boxX = box2_relativeX + 0.065
-    info(self.playerMetrics.allMatchs.KDR or '0', 'KDR', boxX - 0.10, box2_relativeY - 0.16)
-    info(self.playerMetrics.allMatchs.totalHS or '0', 'HS', boxX - 0.032, box2_relativeY - 0.16)
+    info(self.playerMetrics.allMatchs.KDR or '0', lang.KDR or 'KDR', boxX - 0.10, box2_relativeY - 0.16)
+    info(self.playerMetrics.allMatchs.totalHS or '0', lang.HS or 'HS', boxX - 0.032, box2_relativeY - 0.16)
 
-    info(self.playerMetrics.allMatchs.totalKills or '0', 'KILLS', boxX - 0.10, box2_relativeY - 0.05)
-    info(self.playerMetrics.allMatchs.totalDeaths or '0', 'DEATH', boxX - 0.032, box2_relativeY - 0.05)
+    info(self.playerMetrics.allMatchs.totalKills or '0', lang.KILLS or 'KILLS', boxX - 0.10, box2_relativeY - 0.05)
+    info(self.playerMetrics.allMatchs.totalDeaths or '0',lang.DEATH or  'DEATH', boxX - 0.032, box2_relativeY - 0.05)
 
-    info(self.playerMetrics.allMatchs.totalDamageReceived or '0', 'DAMAGE\nRECEIVED', boxX - 0.10, box2_relativeY + 0.06)
-    info(self.playerMetrics.allMatchs.totalDamageDone or '0', 'DAMAGE\nDONE', boxX - 0.032, box2_relativeY + 0.06)
+    info(self.playerMetrics.allMatchs.totalDamageReceived or '0', lang.DAMAGE_RECEIVED or  'DAMAGE\nRECEIVED', boxX - 0.10, box2_relativeY + 0.06)
+    info(self.playerMetrics.allMatchs.totalDamageDone or '0',  lang.DAMAGE_DONE or  'DAMAGE\nDONE', boxX - 0.032, box2_relativeY + 0.06)
 
     local processHits = function(title, valuesTable, relativeX_, relativeY_)
         if not valuesTable then
@@ -360,9 +362,9 @@ function PlayerStatistics:drawPed(x, y, width, height, borderColor, borderWidth,
                 COLOR_TEXT_PED.b, COLOR_TEXT_PED.a, 1, 4, 0.0, 1.0, 0)
         end
     end
-
-    processHits('PRECISÃO\nÚltima Partida', self.playerMetrics.lastMatch.bodyHitRate, x - 0.06, y)
-    processHits('PRECISÃO\nRelatório Geral', self.playerMetrics.allMatchs.bodyHitRate, x + 0.06, y)
+ 
+    processHits(lang.ACCURACY_LAST_MATCH or 'ACCURACY\nLast Match', self.playerMetrics.lastMatch.bodyHitRate, x - 0.06, y)
+    processHits(lang.ACCURACY_GENERAL_REPORT or 'ACCURACY\nGeneral Report', self.playerMetrics.allMatchs.bodyHitRate, x + 0.06, y)
 
 end
 

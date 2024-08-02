@@ -19,27 +19,22 @@ Config.getPlayerUniqueIdentifier = function(playerSource)
     end
     local src = math.floor(playerSource)
     local playerLicense = GetPlayerIdentifierByType(src, 'license')
-    if Config.DevMode then
-        if src > 1 then
-            playerLicense = 'license:test'
-        end
-    end
     return playerLicense
 end
 
 Config.initMatchInfos = {
-    title = "Round %s",
-    subtitle = "SEU TIME"
+    title = "Round %s", 
+    subtitle = "YOUR TEAM"
 }
 
 Config.lobbyControls = {{
-    label = 'Entrar no Grupo',
+    label = 'Join the Group',
     key = 201, -- INPUT_FRONTEND_ACCEPT
     action = 'enterGroup'
 }}
 
 Config.spectateControl = {
-    label = 'Próxima Localização',
+    label = 'Next Location',
     key = 190 -- INPUT_FRONTEND_RIGHT
 }
 
@@ -54,6 +49,32 @@ Config.commands = {
         keyBind = 'F1',
         description = 'Open Player Metrics'
     }
+}
+
+Config.lang = {
+    ['KDR'] = 'KDR',
+    ['HS'] = 'HS',
+    ['KILLS'] = 'KILLS',
+    ['DEATH'] = 'DEATH',
+    ['DAMAGE_RECEIVED'] = 'DAMAGE\nRECEIVED',
+    ['DAMAGE_DONE'] = 'DAMAGE\nDONE',
+    ['ACCURACY_LAST_MATCH'] = 'ACCURACY\nLast Match',
+    ['ACCURACY_GENERAL_REPORT'] = 'ACCURACY\nGeneral Report',
+    ['GeneralReport'] = 'General Report',
+    ['LastMatch'] = 'Last Match',
+    ['PlayerName'] = 'Player Name',
+    ['kills'] = 'Kils',
+    ['deaths'] = 'Deaths',
+    ['damageReceived'] = 'Damage Received',
+    ['damageDone'] = 'Damage Done',
+    ['players'] = 'Players',
+    ['notValidGroup'] = '~r~This group is not a valid~s~',
+    ['alreadyInAmatch'] = '~y~You are already in a match~s~',
+    ['leaveGroup'] = '~y~You left the group~s~', 
+    ['isAlreadyInAGroup'] = '~r~You are already in a group~s~',
+    ['crowdedGroup'] = '~y~This group is full~s~',
+    ['joinedTheGroup'] = 'You have joined the group~s~\nWait until the match starts',
+    ['disqualifiedGroup'] = 'Your group was ~r~disqualified~s~ from the match because it did not reach the ~y~minimum number of members~s~'
 }
 
 Config.lobbies = {
@@ -73,7 +94,7 @@ Config.lobbies = {
         },
         timerLobby = {
             coordinate = vector3(624.65936279297, 590.36047363281, 139.26013183594),
-            text = 'Iniciando Partida em: '
+            text = 'Starting Match at:'
         },
         spectatorLocations = {{
             x = 641.52526855469,
@@ -114,7 +135,7 @@ Config.lobbies = {
         groups = {
             ['group:1'] = {
                 numberOfTeamMembers = 5,
-                label = 'Grupo Azul',
+                label = 'Blue Group',
                 blipColor = {
                     r = 44,
                     g = 152,
@@ -137,7 +158,7 @@ Config.lobbies = {
             },
             ['group:2'] = {
                 numberOfTeamMembers = 5,
-                label = 'Grupo Vermelho',
+                label = 'Red Group',
                 blipColor = {
                     r = 150,
                     g = 8,

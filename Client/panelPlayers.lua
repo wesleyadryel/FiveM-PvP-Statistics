@@ -1,3 +1,5 @@
+local lang = type(Config.lang) == 'table' and Config.lang or {}
+
 local lobbies = type(Config.lobbies) == 'table' and Config.lobbies or {}
 local PANEL_DATA = {}
 local SHOW_PANEL = false
@@ -30,17 +32,17 @@ Utils.togglePanelMatch = function()
     end
 
     if not panelInstance then
-        panelInstance = DynamicPanel:new('Players', {}, {}, {
+        panelInstance = DynamicPanel:new( lang.players or 'Players', {}, {}, {
             r = 255,
             g = 255,
             b = 255,
-            a = 255
+            a = 255 
         })
-        panelInstance:AddHeader('name', "Nome do Player", 0.38)
-        panelInstance:AddHeader('totalKills', "Abates", 0.12)
-        panelInstance:AddHeader('totalDeaths', "Derrotas", 0.12)
-        panelInstance:AddHeader('totalDamageReceived', "Dano Sofrido", 0.12)
-        panelInstance:AddHeader('totalDamageDone', "Dano Causado", 0.12)
+        panelInstance:AddHeader('name', lang.PlayerName or "Player Name", 0.38)
+        panelInstance:AddHeader('totalKills', lang.kills or "Kills", 0.12)
+        panelInstance:AddHeader('totalDeaths', lang.deaths or "Deaths", 0.12)
+        panelInstance:AddHeader('totalDamageReceived',  lang.damageReceived or "Damage Received", 0.12)
+        panelInstance:AddHeader('totalDamageDone', lang.damageDone or "Damage Done", 0.12)
     end
     loadPlayers()
 

@@ -46,12 +46,14 @@ When a match begins, information about the teams, including the number of player
 You can access a panel showing player metrics, such as damage dealt and received, and number of kills and deaths. By default, this panel is activated with the "Z" key.
 When a player is killed, they enter spectator mode with a panoramic view from various angles until a new round starts or the match ends.
 
-![image](https://github.com/user-attachments/assets/393805c0-2606-4927-a55d-54a1c16dd47b)
+![image](https://github.com/user-attachments/assets/681f8ced-cb09-4c46-84e1-c159210572f2)
+
 
 ### End of Match
 At the end of a match, you can open a panel showing metrics for the previous match and all past matches. By default, this panel is activated with the "F1" key.
 
-![image](https://github.com/user-attachments/assets/d2e4692c-cba3-46bd-ada5-52542165c276)
+![image](https://github.com/user-attachments/assets/07aba21d-cb0c-484c-8e4c-4308fd838048)
+
 
 ## Data Saving and API
 The script saves match data in a JSON file located in the root directory of the resource, which is read each time the resource is started. This is an initial method for data storage and should be improved in the future.
